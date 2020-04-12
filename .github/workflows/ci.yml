@@ -36,12 +36,6 @@ jobs:
     - name: Install Linux packages
       run: sudo apt install -y --no-install-recommends postgresql-client
 
-    - name: Initialize database
-      env:
-        PGPASSWORD: 'temba'
-      run: |
-        psql -h localhost -U postgres -c "ALTER ROLE mailroom_test WITH SUPERUSER;"
-
     - name: Install Go
       uses: actions/setup-go@v1
       with:
