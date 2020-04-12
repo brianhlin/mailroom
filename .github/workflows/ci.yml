@@ -27,6 +27,8 @@ jobs:
     - name: Install PostgreSQL
       uses: brianhlin/postgis-action@official-postgis-image
       with:
+        postgresql user: 'mailroom_test'
+        postgresql password: 'temba'
         postgresql version: ${{ matrix.pg-version }}
         postgis version: ${{ matrix.pgis-version }}
 
@@ -37,7 +39,6 @@ jobs:
       run: |
         docker ps
         docker logs postgis
-        psql -h localhost -U postgres -c "CREATE USER mailroom_test PASSWORD 'temba';"
         psql -h localhost -U postgres -c "ALTER ROLE mailroom_test WITH SUPERUSER;"
         psql -h localhost -U postgres -c "CREATE DATABASE mailroom_test;"
 
