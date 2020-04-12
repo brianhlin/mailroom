@@ -27,6 +27,7 @@ jobs:
     - name: Install PostgreSQL
       uses: brianhlin/postgis-action@official-postgis-image
       with:
+        postgresql db: 'mailroom_test'
         postgresql user: 'mailroom_test'
         postgresql password: 'temba'
         postgresql version: ${{ matrix.pg-version }}
@@ -40,7 +41,6 @@ jobs:
         PGPASSWORD: 'temba'
       run: |
         psql -h localhost -U postgres -c "ALTER ROLE mailroom_test WITH SUPERUSER;"
-        psql -h localhost -U postgres -c "CREATE DATABASE mailroom_test;"
 
     - name: Install Go
       uses: actions/setup-go@v1
