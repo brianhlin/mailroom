@@ -6,6 +6,7 @@ jobs:
     strategy:
       matrix:
         pg-version: ['10', '11', '12']
+        pgis-version: ['2.5', '3.0']
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -20,6 +21,7 @@ jobs:
       uses: brianhlin/postgis-action@official-postgis-image
       with:
         postgresql version: ${{ matrix.pg-version }}
+        postgis version: ${{ matrix.pgis-version }}
 
     - name: Install Linux packages
       run: sudo apt install -y --no-install-recommends postgresql-client
