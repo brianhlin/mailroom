@@ -37,8 +37,6 @@ jobs:
 
     - name: Initialize database
       run: |
-        docker ps
-        docker logs postgis
         psql -h localhost -U postgres -c "ALTER ROLE mailroom_test WITH SUPERUSER;"
         psql -h localhost -U postgres -c "CREATE DATABASE mailroom_test;"
 
